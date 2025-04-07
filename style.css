@@ -89,3 +89,62 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
+
+time {
+  font-style: italic;
+  color: #777;
+}
+
+
+
+
+header {
+  background-color: #bb63ff42;
+  padding : 1px;
+}
+
+section {
+  background-color: #f4f4f4;
+  transition: background-color 0.1s ease-in-out;
+  padding: 0.05em 2em;
+
+  header h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    
+  }
+}
+section:hover {
+  background-color: #a552e524;
+}
+
+section a {
+  text-decoration: none;  
+  font-weight: normal;    
+  transition: font-weight 0.3s ease;  
+}
+
+section a:hover {
+  font-weight: bold;  
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  /* Responsive grid */
+  gap: 1em;
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skills li:hover{
+  transform: translateY(-5px);
+}
