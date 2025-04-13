@@ -50,3 +50,45 @@ for (let p of pages) {
         a.target = "_blank";
     }
 }
+
+document.body.insertAdjacentHTML(
+    'afterbegin',
+    `
+    <label class="color-scheme">
+      Theme:
+      <select>
+        <option value="light dark">Automatic</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+    `
+  );
+  
+  let select = document.querySelector('.color-scheme select');
+  
+
+  let prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
+  let autoOption = select.querySelector('option[value="light dark"]');
+  autoOption.textContent = `Automatic (${prefersDark ? "Dark" : "Light"})`;
+  
+  select.addEventListener('input', function (event) {
+    console.log('color scheme changed to', event.target.value);
+    document.documentElement.style.setProperty('color-scheme', select.value);
+  });
+  
+
+  function setColorScheme(scheme) {
+    document.documentElement.style.setProperty('color-scheme', scheme);
+    select.value = scheme;
+  }
+  
+  if ("colorScheme" in localStorage) {
+    setColorScheme(localStorage.colorScheme);
+  }
+
+  select.addEventListener('change', (event) => {
+    let scheme = event.target.value;
+    setColorScheme(scheme);
+    localStorage.colorScheme = scheme;
+  });

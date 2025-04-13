@@ -2,6 +2,12 @@
   --color-accent: oklch(65% 0.25 300);
 }
 
+html {
+  color-scheme: light dark;
+  background-color: canvas;
+  color: canvastext;
+}
+
 body {
     /* Set line height to 1.5 times the font size
          and use the OS’s UI font as the website font
@@ -19,7 +25,9 @@ nav ul, nav li {
 nav {
   display: flex;
   margin-bottom: 2rem;
-  border-bottom: 1px solid oklch(80% 3% 200);
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
+
 }
 
 nav a {
@@ -42,7 +50,7 @@ html {
 
 nav a:hover {
   border-bottom: 0.4em solid var(--color-accent);
-  background-color: oklch(from var(--color-accent) 95% 5% h);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   padding-bottom: 0.3em;
 }
 
@@ -104,7 +112,7 @@ header {
 }
 
 section {
-  background-color: #f4f4f4;
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   transition: background-color 0.1s ease-in-out;
   padding: 0.05em 2em;
 
@@ -116,7 +124,7 @@ section {
   }
 }
 section:hover {
-  background-color: #a552e524;
+  background-color: #8143b177;
 }
 
 section a {
@@ -138,7 +146,7 @@ section a:hover {
 }
 
 .skills li {
-    background-color: #f9f9f9;
+    background-color: #c145ff;
     padding: 1em;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -148,3 +156,15 @@ section a:hover {
 .skills li:hover{
   transform: translateY(-5px);
 }
+
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
+  background: none;
+  border: none;
+}
+
+
