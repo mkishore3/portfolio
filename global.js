@@ -22,12 +22,12 @@ const BASE_PATH =
     : "/portfolio/";
 
 let pages = [
-    { url: "", title: "Home" },
-    { url: "projects/", title: "Projects" },
-    { url: "contact/", title: "Contact" },
-    { url: "resume/", title: "Resume" },
-    { url: "https://github.com/mkishore3", title: "GitHub" },
-  ];
+  { url: `${BASE_PATH}`, title: "Home" },
+  { url: `${BASE_PATH}projects/`, title: "Projects" },
+  { url: `${BASE_PATH}contact/`, title: "Contact" },
+  { url: `${BASE_PATH}resume/`, title: "Resume" },
+  { url: "https://github.com/mkishore3", title: "GitHub" },
+];
 
 let nav = document.createElement('nav');
 document.body.prepend(nav);
