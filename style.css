@@ -168,3 +168,30 @@ section a:hover {
 }
 
 
+body #profile-stats {
+  display: grid;               /* Enable CSS Grid */
+  grid-template-columns: repeat(4, 1fr);  /* Create 4 equal-sized columns */
+  gap: 20px;                   /* Adds space between each <dl> */
+  font-size: 1.1rem;           /* Optional: increases font size for better readability */
+}
+
+body #profile-stats dl {
+  display: contents;           /* Removes the default block behavior and allows grid to apply directly to <dt> and <dd> */
+}
+
+body #profile-stats dt {
+  font-weight: bold;           /* Makes the labels bold */
+  grid-column: span 1;         /* Ensures each label occupies 1 column */
+  grid-row: 1;                 /* Place all <dt> elements on the first row */
+  text-align: center;          /* Center align labels */
+}
+
+body #profile-stats dd {
+  margin-left: 0;              /* Remove any left margin */
+  font-weight: normal;         /* Makes the value text normal weight */
+  grid-column: span 1;         /* Ensures each value occupies 1 column */
+  grid-row: 2;                 /* Place all <dd> elements on the second row */
+  text-align: center;          /* Center align values */
+}
+
+
