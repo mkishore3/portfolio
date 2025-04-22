@@ -1,62 +1,74 @@
 [
     {
-        "title": "Lorem ipsum dolor sit.",
+        "title": "Portfolio Website",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste debitis nostrum saepe quam culpa expedita, sint corrupti autem ratione aliquid aperiam commodi odit officiis esse velit sed sequi quo. Quam."
+        "description": "For the DSC106 class, I built a portfolio page. I learned how to combine JavaScript, JSON, HTML, and CSS to create a visually pleasing website. It features a contact and resume page. This is the site you are on right now!"
     },
     {
-        "title": "Laudantium officiis ipsam ad!",
+        "title": "Sugar Bomb or Balanced Drink?",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Id, ducimus at eius, veritatis quibusdam odio doloribus quo provident, ipsum doloremque nemo ratione eaque earum. Maxime expedita beatae facilis praesentium esse nulla voluptatibus magni. Ducimus eaque saepe veritatis laudantium."
+        "description": "This static visualization was created for DSC 106. It analyzes the composition of various nutrients like sugar and carbohydrates for various categories."
     },
     {
-        "title": "Iste quae aliquid repellendus.",
+        "title": "DataHacks: Dance Battle AI",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Cupiditate quisquam beatae dicta temporibus recusandae. Natus exercitationem alias ab earum nihil excepturi nulla provident reiciendis quidem deleniti dolores saepe modi, quas voluptatibus suscipit unde officiis eum, eaque hic assumenda."
+        "description": "My team won 1st place in the Intermediate category at DS3's hackathon. We built an interactive multiplayer game which allowed users to compete using computer vision, media pipe, and react."
     },
     {
-        "title": "Nesciunt autem architecto ex!",
+        "title": "NSF ML Hackathon: Anomaly Detection",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Consequuntur excepturi in ipsa facilis perferendis magnam nulla, rem deleniti provident, accusamus architecto placeat cumque eveniet. Placeat, facere! Optio maiores quam fugit officia doloribus placeat esse hic fuga quae. Sit."
+        "description": "For this hackathon, my team used a convolutional neural network (CNN) to detect sea level anomalies across data from the past 30 years. This would enable a better understanding of climate change."
     },
     {
-        "title": "Voluptas dolorem eligendi nihil.",
+        "title": "Catalyst: UI/UX Designathon",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Quas, atque, asperiores iure sunt mollitia, et recusandae saepe ut porro corporis aut tempora sit? Culpa maxime quibusdam, quaerat officiis cum, voluptatum tempora tempore suscipit magni harum quos cumque dolores!"
+        "description": "My team and I built low and medium fidelity prototypes for a mobile app which promotes identity affirmation and community. It allows users to answer daily prompts."
     },
     {
-        "title": "Odit iure fugit omnis.",
+        "title": "Nail Art Gallery",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Officia, magni recusandae. Porro voluptatem sed vel obcaecati soluta natus totam, minus dolores ut temporibus ratione eaque maiores sit consequatur perspiciatis praesentium fuga aspernatur quam excepturi harum aut non eligendi!"
+        "description": "Inspired my passion for nail art, I built this site on GitHub pages using JSON and JS for data handling and interactivity. Viewers can view different categories of my nail art and explore more about my work over the past few years."
     },
     {
-        "title": "Porro beatae doloremque fuga!",
+        "title": "Recipe Analysis",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nulla voluptatum natus possimus labore expedita tempore iure alias non saepe? Voluptatem quo numquam aliquid voluptas. Voluptatibus nemo assumenda explicabo, error blanditiis minus in recusandae voluptatum, accusantium sequi, earum rem."
+        "description": "For DSC 80, my teammate and I analyzed recipe and recipe description lengths to create a prediction model. We performed missingness analysis and created visualizations. Our model used scikit-learn. "
     },
     {
-        "title": "Voluptatum voluptatibus reprehenderit non!",
+        "title": "KNN Image Classifier",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Voluptate, aperiam quasi pariatur beatae expedita iusto veritatis possimus nesciunt, dolor ipsum dignissimos magni totam temporibus rem accusantium assumenda! Accusamus dolorum fugit aliquid dignissimos numquam libero aliquam sit recusandae unde."
+        "description": "For DSC 20, my teammate and I created a KNN(K-Nearest Neighbors) classifier to identify if an image is night or day. We used Python to identify pixel values."
     },
     {
-        "title": "Minima fuga pariatur quia?",
+        "title": "Taylor Swift Song Analyzer",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Ea placeat modi necessitatibus nulla eveniet mollitia eius aliquid? Fugit sint veritatis placeat, cupiditate, nam minima dolor, quaerat voluptates incidunt ut tempora asperiores animi commodi qui cumque laboriosam? Neque, velit."
+        "description": "For DSC10, Manipulated and cleaned music discography data to discover sonic themes for Taylor Swift's discography. We used Jupyter Notebook and pandas."
     },
     {
-        "title": "Qui necessitatibus quibusdam atque!",
+        "title": "Meteorite Project",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Aut consectetur facere nisi quos numquam accusantium, dolor, eligendi molestias earum voluptate minima modi reprehenderit saepe qui eius ut sed rerum adipisci a excepturi cumque. Magnam laborum veritatis voluptas in?"
+        "description": "Identified meteorite landings across the globe by plotting each one. Interpreted meta data and performed hypothesis tests to understand various potential claims."
     },
     {
-        "title": "At ipsam consequuntur tempore?",
+        "title": "Holo Taco Infomation Website",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nam, fugit reprehenderit, atque recusandae incidunt dolor accusantium suscipit eos minima dolore illum consequatur sapiente praesentium alias molestias enim? Repellat non minima iusto voluptates cupiditate ratione, nostrum corrupti voluptatum reprehenderit?"
+        "description": "Created a website on Github Pages to feature some basic information about Holo Taco, one of my favorite nail polish companies. I built this in highschool for AP Computer Science Principles."
     },
     {
-        "title": "Vel inventore sunt blanditiis!",
+        "title": "Dinosaur Game",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Suscipit optio, necessitatibus nam ipsum magnam commodi reprehenderit quibusdam fuga doloremque, aspernatur cupiditate repellendus voluptatem. Nisi delectus quibusdam maxime ducimus, reiciendis voluptatum esse accusantium doloremque recusandae reprehenderit molestias libero! Magni."
+        "description": "This is a fake project. It would likely feature a dinosaur running across the screen and the score for the user is determined on how long their character lasts."
     }
 ]
