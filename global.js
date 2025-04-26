@@ -114,10 +114,13 @@ document.body.insertAdjacentHTML(
     for (let pro of project) {
       const article = document.createElement('article');
       article.innerHTML = `
-        <${headingLevel}>${pro.title}</${headingLevel}>
-        <img src="${pro.image}" alt="${pro.title}">
-        <p>Completed in ${pro.year}. ${pro.description}</p>
-      `;
+      <${headingLevel}>${pro.title}</${headingLevel}>
+      <img src="${pro.image}" alt="${pro.title}">
+      <div class="project-details">
+        <p>${pro.description}</p>
+        <time datetime="${pro.year}">Completed in ${pro.year}.</time>
+      </div>
+    `;
       containerElement.appendChild(article);
     }
   }

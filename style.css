@@ -194,4 +194,63 @@ body #profile-stats dd {
   text-align: center;          /* Center align values */
 }
 
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+}
+.container {
+  display: flex;
+  align-items: center; /* vertically align items */
+  gap: 2em; /* space between the pie chart and legend */
+  margin-block: 2em;
+  flex-wrap: wrap; /* allow them to stack on small screens */
+}
+
+/* Flex container to align SVG and legend side-by-side */
+.container {
+  display: flex;
+  align-items: center; /* vertically align items */
+  gap: 2em; /* space between the pie chart and legend */
+  margin-block: 2em;
+  flex-wrap: wrap; /* allow them to stack on small screens */
+}
+
+/* SVG stays its natural size, but we can limit it */
+#projects-pie-plot {
+  max-width: 15em;
+  height: auto;
+}
+
+/* Style the legend */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  background-color: #fafafa;
+  flex: 1; /* allow the legend to grow and take available space */
+  list-style: none;
+}
+
+/* Style each list item inside the legend */
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Style the swatch inside each list item */
+.legend li .swatch {
+  width: 1em;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 0.25em; /* or 50% if you want it circular */
+  display: inline-block;
+}
+
+
 
