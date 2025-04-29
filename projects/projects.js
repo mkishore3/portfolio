@@ -119,7 +119,7 @@ searchInput.addEventListener('change', (event) => {
 
   // Render filtered projects
   renderProjects(filteredProjects, projectsContainer, 'h2');
-  titleEl.textContent = `${filteredProjects.length} Projects`;
+  //titleEl.textContent = `${filteredProjects.length} Projects`;
 
   // Render updated pie chart and legend
   renderPieChart(filteredProjects);
