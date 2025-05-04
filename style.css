@@ -1,0 +1,272 @@
+:root {
+  --color-accent: oklch(65% 0.25 300);
+}
+
+html {
+  color-scheme: light dark;
+  background-color: canvas;
+  color: canvastext;
+}
+
+body {
+    /* Set line height to 1.5 times the font size
+         and use the OS’s UI font as the website font
+       */
+    font: 100%/1.5 system-ui;
+    max-width: 100ch;
+    margin-inline: auto;
+    padding: 1rem;
+  }
+
+nav ul, nav li {
+    display: contents;
+}
+
+nav {
+  display: flex;
+  margin-bottom: 2rem;
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
+
+}
+
+nav a {
+  flex:1;
+  text-align: center;
+  padding: 0.5em;
+  text-decoration: none;
+  color: inherit;
+}
+
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200);
+  padding-bottom: 0.3em;
+  font-weight: bold;
+}
+
+html {
+  accent-color: var(--color-accent);
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  padding-bottom: 0.3em;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+input, textarea, button {
+  font: inherit;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+}
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+  h2 {
+    margin:0;
+  }
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+time {
+  font-style: italic;
+  color: #777;
+}
+
+
+
+
+header {
+  background-color: #bb63ff42;
+  padding : 1px;
+}
+
+section {
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  transition: background-color 0.1s ease-in-out;
+  padding: 0.05em 2em;
+
+  header h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    
+  }
+}
+section:hover {
+  background-color: #8143b177;
+}
+
+section a {
+  text-decoration: none;  
+  font-weight: normal;    
+  transition: font-weight 0.3s ease;  
+}
+
+section a:hover {
+  font-weight: bold;  
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  /* Responsive grid */
+  gap: 1em;
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+    background-color: #c145ff;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skills li:hover{
+  transform: translateY(-5px);
+}
+
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
+  background: none;
+  border: none;
+}
+
+
+body #profile-stats {
+  display: grid;               /* Enable CSS Grid */
+  grid-template-columns: repeat(4, 1fr);  /* Create 4 equal-sized columns */
+  gap: 20px;                   /* Adds space between each <dl> */
+  font-size: 1.1rem;           /* Optional: increases font size for better readability */
+}
+
+body #profile-stats dl {
+  display: contents;           /* Removes the default block behavior and allows grid to apply directly to <dt> and <dd> */
+}
+
+body #profile-stats dt {
+  font-weight: bold;           /* Makes the labels bold */
+  grid-column: span 1;         /* Ensures each label occupies 1 column */
+  grid-row: 1;                 /* Place all <dt> elements on the first row */
+  text-align: center;          /* Center align labels */
+}
+
+body #profile-stats dd {
+  margin-left: 0;              /* Remove any left margin */
+  font-weight: normal;         /* Makes the value text normal weight */
+  grid-column: span 1;         /* Ensures each value occupies 1 column */
+  grid-row: 2;                 /* Place all <dd> elements on the second row */
+  text-align: center;          /* Center align values */
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+}
+.container {
+  display: flex;
+  align-items: center; /* vertically align items */
+  gap: 2em; /* space between the pie chart and legend */
+  margin-block: 2em;
+  flex-wrap: wrap; /* allow them to stack on small screens */
+}
+
+/* Flex container to align SVG and legend side-by-side */
+.container {
+  display: flex;
+  align-items: center; /* vertically align items */
+  gap: 2em; /* space between the pie chart and legend */
+  margin-block: 2em;
+  flex-wrap: wrap; /* allow them to stack on small screens */
+}
+
+/* SVG stays its natural size, but we can limit it */
+#projects-pie-plot {
+  max-width: 15em;
+  height: auto;
+}
+
+/* Style the legend */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  background-color: #fafafa;
+  flex: 1; /* allow the legend to grow and take available space */
+  list-style: none;
+}
+
+/* Style each list item inside the legend */
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Style the swatch inside each list item */
+.legend li .swatch {
+  width: 1em;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 0.25em; /* or 50% if you want it circular */
+  display: inline-block;
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.selected {
+  --color: black !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
+

@@ -1,0 +1,74 @@
+[
+    {
+        "title": "Portfolio Website",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "For the DSC106 class, I built a portfolio page. I learned how to combine JavaScript, JSON, HTML, and CSS to create a visually pleasing website. It features a contact and resume page. This is the site you are on right now!"
+    },
+    {
+        "title": "Sugar Bomb or Balanced Drink?",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "This static visualization was created for DSC 106. It analyzes the composition of various nutrients like sugar and carbohydrates for various categories."
+    },
+    {
+        "title": "DataHacks: Dance Battle AI",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "My team won 1st place in the Intermediate category at DS3's hackathon. We built an interactive multiplayer game which allowed users to compete using computer vision, media pipe, and react."
+    },
+    {
+        "title": "NSF ML Hackathon: Anomaly Detection",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "For this hackathon, my team used a convolutional neural network (CNN) to detect sea level anomalies across data from the past 30 years. This would enable a better understanding of climate change."
+    },
+    {
+        "title": "Catalyst: UI/UX Designathon",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "My team and I built low and medium fidelity prototypes for a mobile app which promotes identity affirmation and community. It allows users to answer daily prompts."
+    },
+    {
+        "title": "Nail Art Gallery",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Inspired my passion for nail art, I built this site on GitHub pages using JSON and JS for data handling and interactivity. Viewers can view different categories of my nail art and explore more about my work over the past few years."
+    },
+    {
+        "title": "Recipe Analysis",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "For DSC 80, my teammate and I analyzed recipe and recipe description lengths to create a prediction model. We performed missingness analysis and created visualizations. Our model used scikit-learn. "
+    },
+    {
+        "title": "KNN Image Classifier",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "For DSC 20, my teammate and I created a KNN(K-Nearest Neighbors) classifier to identify if an image is night or day. We used Python to identify pixel values."
+    },
+    {
+        "title": "Taylor Swift Song Analyzer",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "For DSC10, Manipulated and cleaned music discography data to discover sonic themes for Taylor Swift's discography. We used Jupyter Notebook and pandas."
+    },
+    {
+        "title": "Meteorite Project",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Identified meteorite landings across the globe by plotting each one. Interpreted meta data and performed hypothesis tests to understand various potential claims."
+    },
+    {
+        "title": "Holo Taco Infomation Website",
+        "year": "2022",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Created a website on Github Pages to feature some basic information about Holo Taco, one of my favorite nail polish companies. I built this in highschool for AP Computer Science Principles."
+    },
+    {
+        "title": "Dinosaur Game",
+        "year": "2022",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "This is a fake project. It would likely feature a dinosaur running across the screen and the score for the user is determined on how long their character lasts."
+    }
+]
