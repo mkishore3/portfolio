@@ -270,3 +270,27 @@ path {
   }
 }
 
+.stats {
+  display: grid;               
+  grid-template-columns: repeat(7, 1fr);  
+  gap: 20px;             
+  font-size: 1.1rem; 
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.stats dt {
+  font-weight: bold;           
+  grid-column: span 1;         
+  grid-row: 1;                 
+  text-align: center; 
+}
+
+.stats dd {
+  margin-left: 0;              
+  font-weight: normal;         
+  grid-column: span 1;         
+  grid-row: 2;                 
+  text-align: center; 
+}
+
