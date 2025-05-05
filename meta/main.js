@@ -93,6 +93,14 @@ async function loadData() {
   
 
   function renderScatterPlot(data, commits) {
+    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+  
+    // Use square root scale for visual accuracy
+    const rScale = d3
+      .scaleSqrt()
+      .domain([minLines, maxLines])
+      .range([2, 30]);
+  
     const width = 1000;
     const height = 600;
   
@@ -122,55 +130,54 @@ async function loadData() {
       .domain([0, 24])
       .range([usableArea.bottom, usableArea.top]);
   
-    // Create the axes
+    // Axes
     const xAxis = d3.axisBottom(xScale);
-    // const yAxis = d3.axisLeft(yScale);
     const yAxis = d3
-        .axisLeft(yScale)
-        .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
-    // Add gridlines BEFORE the axes
-    const gridlines = svg
-    .append('g')
-    .attr('class', 'gridlines')
-    .attr('transform', `translate(${usableArea.left}, 0)`);
-
-    // Create gridlines as an axis with no labels and full-width ticks
-    gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
-    // Add X axis
-    svg
-      .append('g')
+      .axisLeft(yScale)
+      .tickFormat(d => String(d % 24).padStart(2, '0') + ':00');
+  
+    // Gridlines before axes
+    svg.append('g')
+      .attr('class', 'gridlines')
+      .attr('transform', `translate(${usableArea.left}, 0)`)
+      .call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+  
+    // X Axis
+    svg.append('g')
       .attr('transform', `translate(0, ${usableArea.bottom})`)
       .call(xAxis);
   
-    // Add Y axis
-    svg
-      .append('g')
+    // Y Axis
+    svg.append('g')
       .attr('transform', `translate(${usableArea.left}, 0)`)
       .call(yAxis);
   
-    // Dots
+    // Dots group
     svg.append('g')
-        .attr('class', 'dots')
-        .selectAll('circle')
-        .data(commits)
-        .join('circle')
-        .attr('cx', d => xScale(d.datetime))
-        .attr('cy', d => yScale(d.hourFrac))
-        .attr('r', 5)
-        .attr('fill', 'steelblue')
-        .on('mouseenter', (event, commit) => {
-            renderTooltipContent(commit);
-            updateTooltipVisibility(true);
-            updateTooltipPosition(event);
-        })
-        .on('mousemove', (event) => {
-            updateTooltipPosition(event);
-        })
-        .on('mouseleave', () => {
-            updateTooltipVisibility(false);
-        });
-
+      .attr('class', 'dots')
+      .selectAll('circle')
+      .data(d3.sort(commits, d => -d.totalLines)) // Sort for better interaction
+      .join('circle')
+      .attr('cx', d => xScale(d.datetime))
+      .attr('cy', d => yScale(d.hourFrac))
+      .attr('r', d => rScale(d.totalLines))
+      .attr('fill', 'steelblue')
+      .style('fill-opacity', 0.7)
+      .on('mouseenter', (event, commit) => {
+        d3.select(event.currentTarget).style('fill-opacity', 1);
+        renderTooltipContent(commit);
+        updateTooltipVisibility(true);
+        updateTooltipPosition(event);
+      })
+      .on('mousemove', (event) => {
+        updateTooltipPosition(event);
+      })
+      .on('mouseleave', (event) => {
+        d3.select(event.currentTarget).style('fill-opacity', 0.7);
+        updateTooltipVisibility(false);
+      });
   }
+  
   
   
    
