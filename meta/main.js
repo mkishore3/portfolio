@@ -161,16 +161,20 @@ async function loadData() {
       .attr('transform', `translate(${usableArea.left}, 0)`)
       .call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
   
+    // ✅ Sort commits by size (largest first)
+    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+  
     // Dots
     const dots = svg.append('g')
       .attr('class', 'dots')
       .selectAll('circle')
-      .data(commits)
+      .data(sortedCommits)
       .join('circle')
       .attr('cx', d => xScale(d.datetime))
       .attr('cy', d => yScale(d.hourFrac))
       .attr('r', d => rScale(d.totalLines))
       .attr('fill', 'steelblue')
+      .style('fill-opacity', 0.7)
       .on('mouseenter', (event, d) => {
         renderTooltipContent(d);
         updateTooltipVisibility(true);
@@ -188,16 +192,13 @@ async function loadData() {
       .attr('class', 'brush')
       .call(brush);
   
-    // Ensure dots are above brush overlay
     svg.selectAll('.dots, .overlay ~ *').raise();
   
-    // Brushed handler
+    // Brush handler
     function brushed(event) {
       const selection = event.selection;
-  
-      d3.selectAll('circle').classed('selected', d =>
-        isCommitSelected(selection, d)
-      );
+      d3.selectAll('circle')
+        .classed('selected', d => isCommitSelected(selection, d));
   
       const selectedCommits = renderSelectionCount(selection, commits);
       renderLanguageBreakdown(selectedCommits);
@@ -205,6 +206,56 @@ async function loadData() {
   }
   
   
+  function renderSelectionCount(selection, commits) {
+    const selectedCommits = selection
+      ? commits.filter(d => isCommitSelected(selection, d))
+      : [];
+  
+    const countElement = document.querySelector('#selection-count');
+    countElement.textContent = `${selectedCommits.length || 'No'} commits selected`;
+  
+    return selectedCommits;
+  }
+  
+  function renderLanguageBreakdown(selectedCommits) {
+    const container = document.getElementById('language-breakdown');
+  
+    if (!selectedCommits || selectedCommits.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+  
+    // Flatten lines from selected commits
+    const lines = selectedCommits.flatMap(commit => commit.lines);
+  
+    if (!lines.length) {
+      container.innerHTML = '<dd>No language data</dd>';
+      return;
+    }
+  
+    // Roll up line counts by language type
+    const breakdown = d3.rollup(
+      lines,
+      v => v.length,
+      d => d.type || 'Unknown' // fallback if `type` is missing
+    );
+  
+    // Total number of lines for proportion calculation
+    const total = lines.length;
+  
+    // Clear and render
+    container.innerHTML = '';
+  
+    for (const [language, count] of breakdown) {
+      const proportion = count / total;
+      const formatted = d3.format('.1~%')(proportion);
+  
+      container.innerHTML += `
+        <dt>${language}</dt>
+        <dd>${count} lines (${formatted})</dd>
+      `;
+    }
+  }
   
    
 let data = await loadData();
