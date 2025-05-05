@@ -294,3 +294,13 @@ path {
   text-align: center; 
 }
 
+.gridlines line {
+  stroke: #ccc;
+  stroke-opacity: 0.5;
+  shape-rendering: crispEdges;
+}
+
+.gridlines path {
+  stroke: none;
+}
+
