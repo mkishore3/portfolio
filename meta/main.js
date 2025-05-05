@@ -150,14 +150,26 @@ async function loadData() {
   
     // Dots
     svg.append('g')
-      .attr('class', 'dots')
-      .selectAll('circle')
-      .data(commits)
-      .join('circle')
-      .attr('cx', d => xScale(d.datetime))
-      .attr('cy', d => yScale(d.hourFrac))
-      .attr('r', 4)
-      .attr('fill', 'steelblue');
+        .attr('class', 'dots')
+        .selectAll('circle')
+        .data(commits)
+        .join('circle')
+        .attr('cx', d => xScale(d.datetime))
+        .attr('cy', d => yScale(d.hourFrac))
+        .attr('r', 5)
+        .attr('fill', 'steelblue')
+        .on('mouseenter', (event, commit) => {
+            renderTooltipContent(commit);
+            updateTooltipVisibility(true);
+            updateTooltipPosition(event);
+        })
+        .on('mousemove', (event) => {
+            updateTooltipPosition(event);
+        })
+        .on('mouseleave', () => {
+            updateTooltipVisibility(false);
+        });
+
   }
   
   
@@ -166,3 +178,32 @@ let data = await loadData();
 let commits = processCommits(data);
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
+
+function renderTooltipContent(commit) {
+    if (!commit) return;
+  
+    document.getElementById('commit-link').href = commit.url;
+    document.getElementById('commit-link').textContent = commit.id;
+  
+    document.getElementById('commit-date').textContent = commit.datetime?.toLocaleDateString('en', {
+      dateStyle: 'full',
+    });
+  
+    document.getElementById('commit-time').textContent = commit.datetime?.toLocaleTimeString('en', {
+      timeStyle: 'short',
+    });
+  
+    document.getElementById('commit-author').textContent = commit.author;
+    document.getElementById('commit-lines').textContent = commit.totalLines;
+  }
+  
+  function updateTooltipVisibility(isVisible) {
+    document.getElementById('commit-tooltip').hidden = !isVisible;
+  }
+  
+  function updateTooltipPosition(event) {
+    const tooltip = document.getElementById('commit-tooltip');
+    tooltip.style.left = `${event.clientX + 10}px`;
+    tooltip.style.top = `${event.clientY + 10}px`;
+  }
+  
