@@ -1,5 +1,3 @@
-console.log('IT’S ALIVE!');
-
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
@@ -74,7 +72,6 @@ document.body.insertAdjacentHTML(
   autoOption.textContent = `Automatic (${prefersDark ? "Dark" : "Light"})`;
   
   select.addEventListener('input', function (event) {
-    console.log('color scheme changed to', event.target.value);
     document.documentElement.style.setProperty('color-scheme', select.value);
   });
   
@@ -98,7 +95,6 @@ document.body.insertAdjacentHTML(
     try {
       // Fetch the JSON file from the given URL
       const response = await fetch(url);
-      console.log(response);
       if (!response.ok) {
         throw new Error(`Failed to fetch projects: ${response.statusText}`);
       }
@@ -114,8 +110,11 @@ document.body.insertAdjacentHTML(
     
     for (let pro of project) {
       const article = document.createElement('article');
+      const title = pro.url 
+        ? `<a href="${pro.url}" target="_blank">${pro.title}</a>`
+        : pro.title;
       article.innerHTML = `
-      <${headingLevel}>${pro.title}</${headingLevel}>
+      <${headingLevel}>${title}</${headingLevel}>
       <img src="${pro.image}" alt="${pro.title}">
       <div class="project-details">
         <p>${pro.description}</p>
