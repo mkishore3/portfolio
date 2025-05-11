@@ -1,5 +1,12 @@
 [
     {
+        "title": "Bikewatching",
+        "year": "2025",
+        "image": "/images/bikewatching.png",
+        "description": "Built an interactive map visualization of bike traffic in the Boston area during different times of the day",
+        "url": "https://mkishore3.github.io/bikewatching/"
+    },
+    {
         "title": "Portfolio Website",
         "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
@@ -21,7 +28,8 @@
         "title": "NSF ML Hackathon: Anomaly Detection",
         "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "For this hackathon, my team used a convolutional neural network (CNN) to detect sea level anomalies across data from the past 30 years. This would enable a better understanding of climate change."
+        "description": "For this hackathon, my team used a convolutional neural network (CNN) to detect sea level anomalies across data from the past 30 years. This would enable a better understanding of climate change.",
+        "url": "https://github.com/mkishore3/nsf_ml_challenge"
     },
     {
         "title": "Catalyst: UI/UX Designathon",
@@ -33,7 +41,8 @@
         "title": "Nail Art Gallery",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Inspired my passion for nail art, I built this site on GitHub pages using JSON and JS for data handling and interactivity. Viewers can view different categories of my nail art and explore more about my work over the past few years."
+        "description": "Inspired my passion for nail art, I built this site on GitHub pages using JSON and JS for data handling and interactivity. Viewers can view different categories of my nail art and explore more about my work over the past few years.",
+        "url": "https://github.com/mkishore3/nail-art-gallery"
     },
     {
         "title": "Recipe Analysis",
@@ -64,11 +73,5 @@
         "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Created a website on Github Pages to feature some basic information about Holo Taco, one of my favorite nail polish companies. I built this in highschool for AP Computer Science Principles."
-    },
-    {
-        "title": "Dinosaur Game",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "This is a fake project. It would likely feature a dinosaur running across the screen and the score for the user is determined on how long their character lasts."
     }
 ]
