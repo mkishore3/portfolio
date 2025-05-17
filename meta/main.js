@@ -2,6 +2,7 @@ import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 let xScale, yScale;
 let allCommits = []; // Store all commits
 let filteredCommits = []; // Store filtered commits
+let fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10);
 
 async function loadData() {
     const data = await d3.csv('https://raw.githubusercontent.com/mkishore3/portfolio/main/meta/loc.csv', (row) => ({
@@ -285,6 +286,38 @@ function filterLinesByCommits(allLines, filteredCommits) {
   const commitSet = new Set(filteredCommits.map(c => c.id));
   return allLines.filter(line => commitSet.has(line.commit));
 }
+function renderFileStats(lines) {
+  // Group lines by file
+  let files = d3.groups(lines, d => d.file)
+    .map(([name, lines]) => ({ name, lines }));
+  files = d3.sort(files, d => -d.lines.length);
+
+  const container = d3.select('.files');
+  container.selectAll('div').remove(); // Clear old content
+
+  const fileGroups = container.selectAll('div')
+    .data(files)
+    .enter()
+    .append('div');
+
+  fileGroups.append('dt')
+    .style('grid-column', 1)
+    .html(d => `
+      <code>${d.name}</code>
+      <small>${d.lines.length} lines</small>
+    `);
+  
+
+  const dd = fileGroups.append('dd')
+  
+  dd.selectAll('div')
+    .data(d => d.lines)
+    .enter()
+    .append('div')
+    .attr('class', 'line')
+    .style('background', d => fileTypeColors(d.type));
+}
+
 
 function updateSlider() {
   commitProgress = +slider.value;
@@ -301,7 +334,7 @@ function updateSlider() {
 
   updateScatterPlot(filteredLines, filteredCommits);
   renderCommitInfo(filteredLines, filteredCommits);
-
+  renderFileStats(filteredLines);
 }
 
 slider.addEventListener('input', updateSlider);
