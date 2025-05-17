@@ -4,6 +4,65 @@ let allCommits = []; // Store all commits
 let filteredCommits = []; // Store filtered commits
 let fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10);
 
+let NUM_ITEMS = 20; // Ideally, let this value be the length of your commit history
+let ITEM_HEIGHT = 110; // Feel free to change
+let VISIBLE_COUNT = 6; // Feel free to change as well
+let totalHeight = (NUM_ITEMS - 1) * ITEM_HEIGHT;
+const scrollContainer = d3.select('#scroll-container');
+const spacer = d3.select('#spacer');
+spacer.style('height', `${totalHeight}px`);
+const itemsContainer = d3.select('#items-container');
+
+scrollContainer.on('scroll', () => {
+  const scrollTop = scrollContainer.property('scrollTop');
+  let startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
+  startIndex = Math.max(0, Math.min(startIndex, filteredCommits.length - VISIBLE_COUNT));
+  renderItems(startIndex);
+  displayCommitFiles();
+});
+
+function renderItems(startIndex) {
+  itemsContainer.selectAll('div').remove();
+
+  const endIndex = Math.min(startIndex + VISIBLE_COUNT, filteredCommits.length);
+  const newCommitSlice = filteredCommits.slice(startIndex, endIndex);
+
+  const currentDate = newCommitSlice[0]?.datetime;
+  if (currentDate) {
+    d3.select('#date-indicator').text(currentDate.toLocaleDateString());
+  }
+
+
+  updateScatterPlot(data, newCommitSlice); // re-render scatterplot
+
+  itemsContainer.selectAll('div')
+    .data(newCommitSlice)
+    .enter()
+    .append('div')
+    .attr('class', 'item')
+    .html((commit, index) => {
+      const commitDate = commit.datetime.toLocaleString("en", {
+        dateStyle: "full",
+        timeStyle: "short"
+      });
+      const fileCount = d3.rollups(commit.lines, d => d.length, d => d.file).length;
+      const lineCount = commit.totalLines;
+      return `
+        <p>
+          On ${commitDate}, I made 
+          <a href="${commit.url}" target="_blank">
+            ${index > 0 ? "another glorious commit" : "my first commit, and it was glorious"}
+          </a>. 
+          I edited ${lineCount} lines across ${fileCount} files. Then I looked over all I had made, and I saw that it was very good.
+        </p>
+      `;
+    })
+    .style('position', 'absolute')
+    .style('top', (_, idx) => `${idx * ITEM_HEIGHT}px`);
+}
+
+
+
 async function loadData() {
     const data = await d3.csv('https://raw.githubusercontent.com/mkishore3/portfolio/main/meta/loc.csv', (row) => ({
       ...row,
@@ -319,26 +378,27 @@ function renderFileStats(lines) {
 }
 
 
-function updateSlider() {
-  commitProgress = +slider.value;
-  commitMaxTime = timeScale.invert(commitProgress);
-  timeDisplay.textContent = commitMaxTime.toLocaleString('en', {
-    dateStyle: 'long',
-    timeStyle: 'short'
-  });
+// function updateSlider() {
+//   commitProgress = +slider.value;
+//   commitMaxTime = timeScale.invert(commitProgress);
+//   timeDisplay.textContent = commitMaxTime.toLocaleString('en', {
+//     dateStyle: 'long',
+//     timeStyle: 'short'
+//   });
   
-  // Filter commits based on the new max time
-  filteredCommits = allCommits.filter(commit => commit.datetime <= commitMaxTime);
+//   // Filter commits based on the new max time
+//   filteredCommits = allCommits.filter(commit => commit.datetime <= commitMaxTime);
   
-  const filteredLines = filterLinesByCommits(data, filteredCommits);
+//   const filteredLines = filterLinesByCommits(data, filteredCommits);
 
-  updateScatterPlot(filteredLines, filteredCommits);
-  renderCommitInfo(filteredLines, filteredCommits);
-  renderFileStats(filteredLines);
-}
+//   updateScatterPlot(filteredLines, filteredCommits);
+//   renderCommitInfo(filteredLines, filteredCommits);
+//   renderFileStats(filteredLines);
+//   renderItems(0);
+// }
 
-slider.addEventListener('input', updateSlider);
-updateSlider(); // initialize display
+// slider.addEventListener('input', updateSlider);
+// updateSlider(); // initialize display
 
 
 renderCommitInfo(data, filteredCommits);
@@ -373,25 +433,25 @@ function renderTooltipContent(commit) {
   }
   
 
-  function filterCommitsByTime(commits) {
-    const slider = document.querySelector('input[type="range"]');
-    if (!slider) return commits;
+  // function filterCommitsByTime(commits) {
+  //   const slider = document.querySelector('input[type="range"]');
+  //   if (!slider) return commits;
     
-    const timeRange = parseInt(slider.value);
-    const now = new Date();
-    const cutoff = new Date(now.getTime() - timeRange * 24 * 60 * 60 * 1000);
+  //   const timeRange = parseInt(slider.value);
+  //   const now = new Date();
+  //   const cutoff = new Date(now.getTime() - timeRange * 24 * 60 * 60 * 1000);
     
-    return commits.filter(commit => commit.datetime >= cutoff);
-  }
+  //   return commits.filter(commit => commit.datetime >= cutoff);
+  // }
   
-  function updateTimeDisplay() {
-    commitProgress = Number(document.getElementById('time-slider').value);
-    document.getElementById('time-display').textContent = commitMaxTime.toLocaleString('en', {
-      dateStyle: 'long',
-      timeStyle: 'short',
-    });
+  // function updateTimeDisplay() {
+  //   commitProgress = Number(document.getElementById('time-slider').value);
+  //   document.getElementById('time-display').textContent = commitMaxTime.toLocaleString('en', {
+  //     dateStyle: 'long',
+  //     timeStyle: 'short',
+  //   });
   
-    filterCommitsByTime();
-    updateScatterPlot(data, filteredCommits);
-  }
+  //   filterCommitsByTime();
+  //   updateScatterPlot(data, filteredCommits);
+  // }
   
