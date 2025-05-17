@@ -371,3 +371,50 @@ circle:hover {
 circle.selected {
   fill: #ff6b6b;
 }
+
+.files {
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 0.25rem;
+  column-gap: 1rem;
+}
+
+.files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.files dt {
+  grid-column: 1;
+  font-weight: bold;
+}
+
+.files dd {
+  grid-column: 2;
+  margin: 0;
+}
+.files dt small {
+  display: block;
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+.line {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
