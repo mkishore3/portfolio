@@ -11,19 +11,27 @@
     <p>This page includes stats about the code of this website!</p>
     <h2>Summary</h2>
 
-    <div id="commit-slider" style="display: flex; align-items: baseline; gap: 1em; margin-bottom: 1em;">
+    <!-- <div id="commit-slider" style="display: flex; align-items: baseline; gap: 1em; margin-bottom: 1em;">
       <label>
         Show commits until:
         <input type="range" id="progress" min="0" max="100" value="100" style="width: 780px;" />
       </label>
       <time id="commit-time-display" style="margin-left: auto;"></time>
-    </div>
+    </div> -->
     <dl class="files"></dl>
 
     <div id="stats"></div>
     <h2>Commits by time of day</h2>
     
-    <div id="chart"></div>
+    <div id="scrollytelling">
+      <div id="scroll-container">
+        <div id="spacer"></div>
+        <div id="items-container"></div>
+        <div id="date-indicator" style="position: sticky; top: 0; background: white; z-index: 1;"></div>
+      </div>
+      <!-- our old scatterplot div -->
+      <div id="chart"></div>
+    </div>
     
     
     <dl id="commit-tooltip" class="info tooltip" hidden>
