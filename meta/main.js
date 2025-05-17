@@ -12,8 +12,8 @@ const scrollContainer = d3.select('#scroll-container');
 const spacer = d3.select('#spacer');
 spacer.style('height', `${totalHeight}px`);
 const itemsContainer = d3.select('#items-container');
-function displayCommitFiles() {
-  const lines = filteredCommits.flatMap((d) => d.lines);
+function displayCommitFiles(commitSubset = filteredCommits) {
+  const lines = commitSubset.flatMap((d) => d.lines);
   let fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10);
   let files = d3
     .groups(lines, (d) => d.file)
@@ -47,9 +47,76 @@ scrollContainer.on('scroll', () => {
   let startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
   startIndex = Math.max(0, Math.min(startIndex, filteredCommits.length - VISIBLE_COUNT));
   renderItems(startIndex);
-  displayCommitFiles();
+  // displayCommitFiles();
+  displayCommitFiles(filteredCommits.slice(0, 10));
 });
 
+enterView({
+  selector: '#file-scrolly .step',
+  enter: (el, i) => {
+    // You can change this to use a different slice strategy later
+    const fileScrollySlice = filteredCommits.slice(i * 10, (i + 1) * 10);
+    displayCommitFiles(fileScrollySlice); // Overload displayCommitFiles to accept data
+  },
+});
+
+// Initialize file scrolly
+const fileScrollContainer = d3.select('#file-scroll-container');
+const fileSpacer = d3.select('#file-spacer');
+const fileItemsContainer = d3.select('#file-items-container');
+
+// Set up file scrolly dimensions
+const FILE_ITEM_HEIGHT = 110;
+const FILE_VISIBLE_COUNT = 6;
+const fileTotalHeight = (NUM_ITEMS - 1) * FILE_ITEM_HEIGHT;
+fileSpacer.style('height', `${fileTotalHeight}px`);
+
+// Handle file scrolly scroll events
+fileScrollContainer.on('scroll', () => {
+  const scrollTop = fileScrollContainer.property('scrollTop');
+  let startIndex = Math.floor(scrollTop / FILE_ITEM_HEIGHT);
+  startIndex = Math.max(0, Math.min(startIndex, filteredCommits.length - FILE_VISIBLE_COUNT));
+  renderFileItems(startIndex);
+});
+
+function renderFileItems(startIndex) {
+  fileItemsContainer.selectAll('div').remove();
+
+  const endIndex = Math.min(startIndex + FILE_VISIBLE_COUNT, filteredCommits.length);
+  const newCommitSlice = filteredCommits.slice(startIndex, endIndex);
+
+  fileItemsContainer.selectAll('div')
+    .data(newCommitSlice)
+    .enter()
+    .append('div')
+    .attr('class', 'item')
+    .html((commit, index) => {
+      const commitDate = commit.datetime.toLocaleString("en", {
+        dateStyle: "full",
+        timeStyle: "short"
+      });
+      const fileCount = d3.rollups(commit.lines, d => d.length, d => d.file).length;
+      const lineCount = commit.totalLines;
+      return `
+        <p>
+          On ${commitDate}, 
+          The most significant changes was in:
+          
+            ${d3.rollups(commit.lines, d => d.length, d => d.file)
+              .sort((a, b) => b[1] - a[1])
+              .slice(0, 1)
+              .map(([file, count]) => `<li>${file} (${count} lines)</li>`)
+              .join('')}
+          
+        </p>
+      `;
+    })
+    .style('position', 'absolute')
+    .style('top', (_, idx) => `${(startIndex + idx) * FILE_ITEM_HEIGHT}px`);
+}
+
+// Initial render
+renderFileItems(0);
 
 function renderItems(startIndex) {
   itemsContainer.selectAll('div').remove();
@@ -364,6 +431,7 @@ let timeScale = d3.scaleTime(
   d3.extent(allCommits, d => d.datetime),
   [0, 100]
 );
+displayCommitFiles(filteredCommits.slice(0, 10));
 
 let commitMaxTime = timeScale.invert(commitProgress);
 const selectedTime = d3.select('#selectedTime');

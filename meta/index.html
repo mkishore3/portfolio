@@ -9,18 +9,25 @@
 <body>
     <h1 class="meta-title">Meta</h1>
     <p>This page includes stats about the code of this website!</p>
-    <h2>Summary</h2>
-
-    <!-- <div id="commit-slider" style="display: flex; align-items: baseline; gap: 1em; margin-bottom: 1em;">
-      <label>
-        Show commits until:
-        <input type="range" id="progress" min="0" max="100" value="100" style="width: 780px;" />
-      </label>
-      <time id="commit-time-display" style="margin-left: auto;"></time>
-    </div> -->
-    <dl class="files"></dl>
-
-    <div id="stats"></div>
+    <div class="top-section">
+      <div class="unit-visualization">
+        <h2>Summary</h2>
+        <dl class="files"></dl>
+        <div id="stats"></div>
+      </div>
+      <section id="file-scrolly" class="scrolly-container">
+        <div id="file-scroll-container" class="scroll-container">
+          <div id="file-spacer" class="spacer"></div>
+          <div id="file-items-container" class="items-container"></div>
+        </div>
+        <div id="file-chart" class="chart"></div>
+        <div class="steps">
+          <div class="step">These are the files I touched during my project...</div>
+          <div class="step">I edited more lines here...</div>
+          <div class="step">Notice the file types I used most...</div>
+        </div>
+      </section>
+    </div>
     <h2>Commits by time of day</h2>
     
     <div id="scrollytelling">
@@ -32,8 +39,7 @@
       <!-- our old scatterplot div -->
       <div id="chart"></div>
     </div>
-    
-    
+
     <dl id="commit-tooltip" class="info tooltip" hidden>
         <dt>Commit</dt>
         <dd>
@@ -55,7 +61,8 @@
       <p id="selection-count">No commits selected</p>
       
       <dl id="language-breakdown" class="stats"></dl>
-      
+
+    <script src="https://unpkg.com/enter-view@1.0.0/enter-view.min.js"></script>
     <script type="module" src="main.js"></script>
     <script type="module" src="../global.js"></script>
 </body>
